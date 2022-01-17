@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.reviewme.LocationsSearchAdapter
 import com.example.reviewme.R
 import com.example.reviewme.databinding.FragmentHomeBinding
 
@@ -35,6 +36,12 @@ class HomeFragment : Fragment() {
 //        homeViewModel.text.observe(viewLifecycleOwner, Observer {
 //            textView.text = it
 //        })
+
+        val adapter = LocationsSearchAdapter()
+        binding.locationsList.adapter = adapter
+
+        homeViewModel.locations.observe(viewLifecycleOwner) { locations -> adapter.data = locations}
+
         return root
     }
 
