@@ -1,16 +1,15 @@
 package com.example.reviewme.ui.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.reviewme.LocationsSearchAdapter
 import com.example.reviewme.R
 import com.example.reviewme.databinding.FragmentHomeBinding
+
+import android.view.*
+import androidx.appcompat.widget.SearchView
+
 
 class HomeFragment : Fragment() {
 
@@ -26,27 +25,35 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
 
         val adapter = LocationsSearchAdapter()
         binding.locationsList.adapter = adapter
 
         homeViewModel.locations.observe(viewLifecycleOwner) { locations -> adapter.data = locations}
 
+        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(text: String?): Boolean {
+                homeViewModel.getResults(text)
+
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+

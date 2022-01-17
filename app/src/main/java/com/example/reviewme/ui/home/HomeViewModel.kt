@@ -15,4 +15,10 @@ class HomeViewModel : ViewModel() {
         value = listOf("A", "B", "C", "D", "E")
     }
 
+    fun getResults(query: String?) {
+        if (query !== null) {
+            System.out.println("I want to get results for $query")
+        }
+    }
+
 }
