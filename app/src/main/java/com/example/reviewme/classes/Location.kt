@@ -3,7 +3,6 @@ package com.example.reviewme.classes
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import kotlin.text.*
 
 
 @Serializable
@@ -15,11 +14,11 @@ data class LocationWrapper(
 
 @Serializable
 data class Location(
-    val name: String,
-    val formatted_address: String,
+    val name: String? = "",
+    val formatted_address: String? = "",
     val opening_hours: OpeningHours? = null,
     val rating: Float? = 0.0f,
-    val types: MutableList<String> = mutableListOf()
+    val types: MutableList<String>? = mutableListOf()
 ) {
     val status: String = if (opening_hours?.open_now == true) "Open" else "Close"
     override fun toString(): String = "$name $rating $formatted_address"
@@ -148,7 +147,7 @@ fun main(args: Array<String>) {
     "status": "OK"
     }
     """
-    val obj =   format.decodeFromString<LocationWrapper>(fullAnswerTest)
+    val obj = format.decodeFromString<LocationWrapper>(fullAnswerTest)
    // println(obj) // MyModel(a=42, b="42")
     println(obj.status)
     println(obj.results[0].status)
