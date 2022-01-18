@@ -10,6 +10,7 @@ import retrofit2.Response
 import java.net.URLEncoder
 import javax.security.auth.callback.Callback
 import com.example.reviewme.classes.Location
+import com.example.reviewme.classes.LocationWrapper
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
@@ -91,6 +92,10 @@ class HomeViewModel : ViewModel() {
             object: retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     //locations.value = listOf(response.body().toString().take(50), "C", "D", "S")
+                    val format = Json { ignoreUnknownKeys = true }
+                    val obj =  format.decodeFromString<LocationWrapper>(response.body().toString())
+                    
+                    locations.value = obj.results
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {

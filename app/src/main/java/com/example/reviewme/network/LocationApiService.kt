@@ -9,7 +9,7 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://maps.googleapis.com"
 
-private val API_KEY =  System.getenv("REVIEW_ME_API_KEY")
+private val API_KEY =  System.getenv("REVIEW_ME_API_KEY") ?: "AIzaSyAZuwaDgYQkLe-uOBtJEbtMS_n3_Fd6SiM"
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(ScalarsConverterFactory.create())
