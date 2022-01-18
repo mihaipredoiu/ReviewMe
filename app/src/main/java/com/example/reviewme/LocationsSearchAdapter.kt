@@ -5,10 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.reviewme.classes.Location
 
 class LocationsSearchAdapter: RecyclerView.Adapter<LocationItemViewHolder>() {
 
-    var data: List<String> = listOf<String>()
+    var data: List<Location> = listOf<Location>()
         set(value) {
             field = value
             notifyDataSetChanged()
@@ -21,7 +22,7 @@ class LocationsSearchAdapter: RecyclerView.Adapter<LocationItemViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: LocationItemViewHolder, position: Int) {
-        holder.bind(data[position])
+        holder.bind(data[position].toString())
     }
 
     override fun getItemCount(): Int {
