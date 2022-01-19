@@ -9,12 +9,14 @@ import com.example.reviewme.databinding.FragmentHomeBinding
 
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import com.example.reviewme.MainActivity
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
+
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,6 +27,8 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val activity: MainActivity? = activity as MainActivity?
+
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)

@@ -19,6 +19,9 @@ private val retrofit = Retrofit.Builder()
 interface LocationApiService {
     @GET("maps/api/place/textsearch/json")
     fun getLocations(@Query("query") query: String?, @Query("key") key: String = API_KEY): Call<String>
+
+    @GET("maps/api/place/textsearch/json")
+    fun getNearbyLocations(@Query("query") query: String?, @Query("key") key: String = API_KEY): Call<String>
 }
 
 object LocationApi {
