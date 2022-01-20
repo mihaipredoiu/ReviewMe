@@ -12,6 +12,7 @@ import com.example.reviewme.classes.DetailedLocation
 import com.example.reviewme.classes.LocationWrapper
 import com.example.reviewme.databinding.FragmentDashboardBinding
 import com.example.reviewme.network.LocationApi
+import com.example.reviewme.ui.home.HomeViewModel
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import retrofit2.Call
@@ -46,9 +47,11 @@ class PlacesFragment : Fragment() {
 
         placesViewModel.getLocationDetails()
 
+        placesViewModel.arg_id = arguments?.let { PlacesFragmentArgs.fromBundle(it).argId }!!
+
+
         return root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

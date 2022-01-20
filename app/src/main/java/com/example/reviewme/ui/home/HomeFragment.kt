@@ -9,14 +9,18 @@ import com.example.reviewme.databinding.FragmentHomeBinding
 
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.example.reviewme.MainActivity
+import com.example.reviewme.ui.places.PlacesFragment
 
 
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null
-
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -34,7 +38,9 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val adapter = LocationsSearchAdapter()
+        val adapter = LocationsSearchAdapter{
+            clickedItem -> homeViewModel.onItemClicked(clickedItem)
+        }
         binding.locationsList.adapter = adapter
 
         homeViewModel.locations.observe(viewLifecycleOwner) { locations -> adapter.data = locations}
@@ -51,13 +57,21 @@ class HomeFragment : Fragment() {
             }
         })
 
+        homeViewModel.navigateToLocationDetails.observe(viewLifecycleOwner, Observer { placeId ->
+            placeId?.let {
+            findNavController().navigate(
+                HomeFragmentDirections.actionNavigationHomeToNavigationPlaces(placeId))
+        }})
+
         return root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
+
 }
 

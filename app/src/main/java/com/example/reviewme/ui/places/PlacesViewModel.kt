@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class PlacesViewModel : ViewModel() {
+    lateinit var arg_id : String
 
     var PLACE_ID = "ChIJTYUPei4AskARa8L4i012dis"
     var PLACE_URL = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJTYUPei4AskARa8L4i012dis&key=AIzaSyAZuwaDgYQkLe-uOBtJEbtMS_n3_Fd6SiM"
@@ -23,8 +24,6 @@ class PlacesViewModel : ViewModel() {
         value = null
     }
 
-
-
     fun getLocationDetails(id: String? = PLACE_ID) {
         LocationApi.retrofitService.getLocationById(PLACE_ID).enqueue(
             object: retrofit2.Callback<String> {
@@ -35,6 +34,7 @@ class PlacesViewModel : ViewModel() {
                     place.value = obj
 
                     System.out.println(obj)
+                    System.out.println(arg_id)
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {}
