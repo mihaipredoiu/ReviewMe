@@ -8,7 +8,15 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.reviewme.classes.DetailedLocation
+import com.example.reviewme.classes.LocationWrapper
 import com.example.reviewme.databinding.FragmentDashboardBinding
+import com.example.reviewme.network.LocationApi
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+import retrofit2.Call
+import retrofit2.Response
+import java.net.URLEncoder
 
 class PlacesFragment : Fragment() {
 
@@ -18,6 +26,7 @@ class PlacesFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,8 +43,12 @@ class PlacesFragment : Fragment() {
         placesViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        placesViewModel.getLocationDetails()
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

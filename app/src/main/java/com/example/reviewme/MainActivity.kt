@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
 //
 //    var latitude = 0.0
 
-    var HARDCODED_PLACE_ID = "ChIJTYUPei4AskARa8L4i012dis"
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
