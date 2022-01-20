@@ -90,7 +90,7 @@ class HomeViewModel : ViewModel() {
     private fun getHomeLocations(query: String?) {
         LocationApi.retrofitService.getLocations(URLEncoder.encode(query, "utf-8")).enqueue(
             object: retrofit2.Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
+                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     //locations.value = listOf(response.body().toString().take(50), "C", "D", "S")
                     val format = Json { ignoreUnknownKeys = true }
                     val obj =  format.decodeFromString<LocationWrapper>(response.body().toString())

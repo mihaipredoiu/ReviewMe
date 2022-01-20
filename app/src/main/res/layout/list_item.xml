@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+
+    app:cardBackgroundColor="#B2B2B2"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="3dp"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout"
+        android:padding="20dp"
+        android:background="@drawable/card_background">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_title"
+            android:textColor="#99A28E"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxLines="2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp"
+            tools:text="@tools:sample/full_names"/>
+
+        <TextView
+            android:id="@+id/item_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:textColor="#CED0D0"
+            android:textSize="16sp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            app:layout_constraintTop_toBottomOf="@id/item_title"
+            tools:layout_editor_absoluteX="16dp"
+            tools:text="@tools:sample/lorem/random"/>
+
+        <FrameLayout
+            android:layout_marginTop="12dp"
+            android:id="@+id/frameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/item_description">
+
+
+            <ImageView
+                android:id="@+id/list_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_action_name"
+                android:layout_gravity="bottom"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_rating"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="30dp"
+                android:textColor="#CED0D0"
+                android:textStyle="bold"
+                android:textSize="17sp"
+                tools:text="@tools:sample/lorem"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/item_status"
+                android:text="140jsnjn"
+                android:textSize="17sp"
+                android:textColor="#55C366"
+                android:textStyle="bold"
+                android:layout_gravity="bottom|right"
+                 />
+        </FrameLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+</androidx.cardview.widget.CardView>
