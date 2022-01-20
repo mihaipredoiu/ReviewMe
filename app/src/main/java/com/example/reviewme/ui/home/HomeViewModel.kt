@@ -27,7 +27,7 @@ class HomeViewModel : ViewModel() {
             "formatted_address": "Bulevardul Regina Maria 43, București 040126, Romania",
             "geometry": {},
             "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-            "icon_background_color": "#FF9E67",
+            "icon_backgrogiund_color": "#FF9E67",
             "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
             "name": "Business Land Restaurant",
             "opening_hours": {
@@ -90,7 +90,7 @@ class HomeViewModel : ViewModel() {
     private fun getHomeLocations(query: String?) {
         LocationApi.retrofitService.getLocations(URLEncoder.encode(query, "utf-8")).enqueue(
             object: retrofit2.Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>) {
+                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     //locations.value = listOf(response.body().toString().take(50), "C", "D", "S")
                     val format = Json { ignoreUnknownKeys = true }
                     val obj =  format.decodeFromString<LocationWrapper>(response.body().toString())

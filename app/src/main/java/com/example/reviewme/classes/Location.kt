@@ -14,13 +14,14 @@ data class LocationWrapper(
 
 @Serializable
 data class Location(
+    val place_id : String? = "",
     val name: String? = "",
     val formatted_address: String? = "",
     val opening_hours: OpeningHours? = null,
     val rating: Float? = 0.0f,
     val types: MutableList<String>? = mutableListOf()
 ) {
-    val status: String = if (opening_hours?.open_now == true) "Open" else "Close"
+    val status: String = if (opening_hours?.open_now == true) "Open Now" else "Closed"
     override fun toString(): String = "$name $rating $formatted_address"
 }
 
