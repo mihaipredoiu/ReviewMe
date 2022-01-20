@@ -11,6 +11,8 @@ import org.w3c.dom.Text
 
 class LocationsSearchAdapter: RecyclerView.Adapter<LocationItemViewHolder>() {
 
+
+
     var data: List<Location> = listOf<Location>()
         set(value) {
             field = value

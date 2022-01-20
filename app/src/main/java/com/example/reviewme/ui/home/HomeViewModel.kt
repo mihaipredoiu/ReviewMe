@@ -27,7 +27,7 @@ class HomeViewModel : ViewModel() {
             "formatted_address": "Bulevardul Regina Maria 43, București 040126, Romania",
             "geometry": {},
             "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-            "icon_background_color": "#FF9E67",
+            "icon_backgrogiund_color": "#FF9E67",
             "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
             "name": "Business Land Restaurant",
             "opening_hours": {
