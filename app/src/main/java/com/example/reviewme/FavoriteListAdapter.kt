@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reviewme.classes.DetailedLocation
-import com.example.reviewme.classes.Location
 
 class FavoriteListAdapter(
     private val onItemClicked: (DetailedLocation) -> Unit
-): RecyclerView.Adapter<FavoriteListItemViewHolder>() {
+) : RecyclerView.Adapter<FavoriteListItemViewHolder>() {
 
     var data: List<DetailedLocation> = listOf()
         set(value) {
@@ -36,7 +35,7 @@ class FavoriteListAdapter(
         }
 
         val item = data[position]
-        holder.locationView.setOnClickListener{
+        holder.locationView.setOnClickListener {
             onItemClicked(item)
         }
     }
@@ -46,8 +45,8 @@ class FavoriteListAdapter(
     }
 }
 
-class FavoriteListItemViewHolder(val locationView: View): RecyclerView.ViewHolder(locationView) {
-    var itemTitle : TextView = locationView.findViewById(R.id.item_title)
+class FavoriteListItemViewHolder(val locationView: View) : RecyclerView.ViewHolder(locationView) {
+    var itemTitle: TextView = locationView.findViewById(R.id.item_title)
     var itemDescription: TextView = locationView.findViewById(R.id.item_description)
     var itemRating: TextView = locationView.findViewById(R.id.item_rating)
     var itemStatus: TextView = locationView.findViewById(R.id.item_status)

@@ -1,82 +1,19 @@
 package com.example.reviewme.ui.home
 
-
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.reviewme.classes.Location
+import com.example.reviewme.classes.LocationWrapper
 import com.example.reviewme.network.LocationApi
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
 import retrofit2.Call
 import retrofit2.Response
 import java.net.URLEncoder
-import com.example.reviewme.classes.Location
-import com.example.reviewme.classes.LocationWrapper
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
 
 class HomeViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
-
     val locations: MutableLiveData<List<Location>> = MutableLiveData<List<Location>>().apply {
-        val stringObj1 = """{
-            "business_status": "OPERATIONAL",
-            "formatted_address": "Bulevardul Regina Maria 43, București 040126, Romania",
-            "geometry": {},
-            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-            "icon_backgrogiund_color": "#FF9E67",
-            "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
-            "name": "Business Land Restaurant",
-            "opening_hours": {
-            "open_now": true
-            },
-            "photos": [],
-            "place_id": "ChIJXXJSvhX-sUARa9HWY1H8cHA",
-            "plus_code": {},
-            "rating": 4.5,
-            "reference": "ChIJXXJSvhX-sUARa9HWY1H8cHA",
-            "types": [
-            "restaurant",
-            "food",
-            "point_of_interest",
-            "establishment"
-            ],
-            "user_ratings_total": 432
-        }"""
-
-        val stringObj2 = """{
-            "business_status": "OPERATIONAL",
-            "formatted_address": "Bulevardul Regina Maria 43, București 040126, Romania",
-            "geometry": {},
-            "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png",
-            "icon_background_color": "#FF9E67",
-            "icon_mask_base_uri": "https://maps.gstatic.com/mapfiles/place_api/icons/v2/restaurant_pinlet",
-            "name": "Claw's",
-            "opening_hours": {
-            "open_now": true
-            },
-            "photos": [],
-            "place_id": "ChIJXXJSvhX-sUARa9HWY1H8cHA",
-            "plus_code": {},
-            "rating": 4.5,
-            "reference": "ChIJXXJSvhX-sUARa9HWY1H8cHA",
-            "types": [
-            "restaurant",
-            "food",
-            "point_of_interest",
-            "establishment"
-            ],
-            "user_ratings_total": 432
-        }"""
-
-        val format = Json { ignoreUnknownKeys = true }
-
-        val testObj1 = format.decodeFromString<Location>(stringObj1)
-        val testObj2 = format.decodeFromString<Location>(stringObj2)
-
-        value = listOf(testObj1, testObj2)
+        value = listOf()
     }
 
     fun getResults(query: String?) {
@@ -87,11 +24,11 @@ class HomeViewModel : ViewModel() {
 
     private fun getHomeLocations(query: String?) {
         LocationApi.retrofitService.getLocations(URLEncoder.encode(query, "utf-8")).enqueue(
-            object: retrofit2.Callback<String> {
-                 override fun onResponse(call: Call<String>, response: Response<String>) {
+            object : retrofit2.Callback<String> {
+                override fun onResponse(call: Call<String>, response: Response<String>) {
                     val format = Json { ignoreUnknownKeys = true }
-                    val obj =  format.decodeFromString<LocationWrapper>(response.body().toString())
-                    
+                    val obj = format.decodeFromString<LocationWrapper>(response.body().toString())
+
                     locations.value = obj.results
                 }
 

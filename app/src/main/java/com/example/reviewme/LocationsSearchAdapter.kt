@@ -10,7 +10,7 @@ import com.example.reviewme.classes.Location
 
 class LocationsSearchAdapter(
     private val onItemClicked: (Location) -> Unit
-): RecyclerView.Adapter<LocationItemViewHolder>() {
+) : RecyclerView.Adapter<LocationItemViewHolder>() {
 
     var data: List<Location> = listOf()
         set(value) {
@@ -35,7 +35,7 @@ class LocationsSearchAdapter(
         }
 
         val item = data[position]
-        holder.locationView.setOnClickListener{
+        holder.locationView.setOnClickListener {
             onItemClicked(item)
         }
     }
@@ -45,8 +45,8 @@ class LocationsSearchAdapter(
     }
 }
 
-class LocationItemViewHolder(val locationView: View): RecyclerView.ViewHolder(locationView) {
-    var itemTitle : TextView = locationView.findViewById(R.id.item_title)
+class LocationItemViewHolder(val locationView: View) : RecyclerView.ViewHolder(locationView) {
+    var itemTitle: TextView = locationView.findViewById(R.id.item_title)
     var itemDescription: TextView = locationView.findViewById(R.id.item_description)
     var itemRating: TextView = locationView.findViewById(R.id.item_rating)
     var itemStatus: TextView = locationView.findViewById(R.id.item_status)

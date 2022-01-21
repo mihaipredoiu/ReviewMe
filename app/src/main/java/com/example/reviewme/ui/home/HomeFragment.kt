@@ -1,16 +1,15 @@
 package com.example.reviewme.ui.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
-import com.example.reviewme.LocationsSearchAdapter
-import com.example.reviewme.databinding.FragmentHomeBinding
-
 import android.view.*
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.example.reviewme.LocationsSearchAdapter
+import com.example.reviewme.databinding.FragmentHomeBinding
 
 
 class HomeFragment : Fragment() {
@@ -32,14 +31,16 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val adapter = LocationsSearchAdapter{
-            clickedItem -> homeViewModel.onItemClicked(clickedItem)
+        val adapter = LocationsSearchAdapter { clickedItem ->
+            homeViewModel.onItemClicked(clickedItem)
         }
         binding.locationsList.adapter = adapter
 
-        homeViewModel.locations.observe(viewLifecycleOwner) { locations -> adapter.data = locations}
+        homeViewModel.locations.observe(viewLifecycleOwner) { locations ->
+            adapter.data = locations
+        }
 
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(text: String?): Boolean {
                 homeViewModel.getResults(text)
 
@@ -56,9 +57,11 @@ class HomeFragment : Fragment() {
 
         homeViewModel.navigateToLocationDetails.observe(viewLifecycleOwner, Observer { placeId ->
             placeId?.let {
-            findNavController().navigate(
-                HomeFragmentDirections.actionNavigationHomeToNavigationPlaces(placeId))
-        }})
+                findNavController().navigate(
+                    HomeFragmentDirections.actionNavigationHomeToNavigationPlaces(placeId)
+                )
+            }
+        })
 
         /** Choose a random keyword */
         val keywordsList = listOf("restaurants", "supermarkets", "malls", "coffee shops")
@@ -78,7 +81,6 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
 
 
 }

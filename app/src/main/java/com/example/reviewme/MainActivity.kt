@@ -1,14 +1,14 @@
 package com.example.reviewme
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.forEach
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.reviewme.databinding.ActivityMainBinding
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,7 +30,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_places, R.id.navigation_saved
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        navView.menu.forEach {
+            if (it.toString() == "Places") {
+                it.isEnabled = false
+            }
         }
+    }
 }
