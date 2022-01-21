@@ -1,5 +1,6 @@
 package com.example.reviewme.ui.places
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -40,7 +41,7 @@ class PlacesFragment : Fragment() {
         val itemTitle: TextView = binding.itemTitle
         val itemDescription: TextView = binding.itemDescription
         val itemRating: TextView = binding.itemRating
-        val itemStatus: TextView = binding.itemStatus
+//        val itemStatus: TextView = binding.itemStatus
         val itemPhoneNumber: TextView = binding.itemPhoneNumber
         val itemWebsite: TextView = binding.itemWebsite
 
@@ -79,7 +80,7 @@ class PlacesFragment : Fragment() {
                 binding.mapsButton.setOnClickListener() {
                     val mapIntent: Intent = Uri.parse(
                         "geo:$lat,$lng?z=14"
-                    ).let { location ->
+                    ).let {
                         // Or map point based on latitude/longitude
                         val location: Uri = Uri.parse("geo:$lat,$lng?z=19" ) // z param is zoom level
                         Intent(Intent.ACTION_VIEW, location)
@@ -96,6 +97,25 @@ class PlacesFragment : Fragment() {
                     }
 
                     startActivity(webIntent)
+                }
+
+                val id = it.result.place_id
+
+                binding.addButton.setOnClickListener() {
+                    val filename = "savedPlaces"
+                    var currentStorage: String = ""
+
+                    context?.openFileInput(filename)?.bufferedReader()?.useLines { lines ->
+                        lines.forEach { item -> currentStorage = item }
+                    }
+
+                    context?.openFileOutput(filename, Context.MODE_PRIVATE).use {
+                        it?.write("$currentStorage $id".toByteArray())
+                    }
+
+                    context?.openFileInput(filename)?.bufferedReader()?.useLines { lines ->
+                        lines.forEach { item -> System.out.println(item) }
+                    }
                 }
 
             }

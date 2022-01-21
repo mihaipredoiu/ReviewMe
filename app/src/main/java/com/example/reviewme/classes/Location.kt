@@ -17,7 +17,7 @@ data class Location(
     val place_id : String? = "",
     val name: String? = "",
     val formatted_address: String? = "",
-    val opening_hours: OpeningHours? = null,
+    val opening_hours: OpeningHours? = OpeningHours(open_now = true),
     val rating: Float? = 0.0f,
     val types: MutableList<String>? = mutableListOf()
 ) {
@@ -27,7 +27,7 @@ data class Location(
 
 @Serializable
 data class OpeningHours(
-    val open_now: Boolean
+    val open_now: Boolean? = false
 )
 
 fun main(args: Array<String>) {

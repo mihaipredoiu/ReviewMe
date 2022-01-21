@@ -28,8 +28,12 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.reviewme.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_saved"
+        android:name="com.example.reviewme.ui.saved.SavedFragment"
+        android:label="@string/title_saved"
+        tools:layout="@layout/fragment_saved" >
+        <action
+            android:id="@+id/action_saved_to_navigation_places"
+            app:destination="@id/navigation_places" />
+    </fragment>
 </navigation>

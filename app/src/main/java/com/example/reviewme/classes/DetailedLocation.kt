@@ -17,12 +17,14 @@ data class DetailedLocation(
     val opening_hours: OpeningHours? = null,
     val rating: Float? = 0.0f,
     val url: String,
+    val place_id: String,
     val types: MutableList<String>? = mutableListOf(),
     val photos: MutableList<Photo>? = mutableListOf(),
     val reviews: MutableList<Review>? = mutableListOf(),
     val website: String? = "",
     val geometry: Geometry
 ) {
+    val status: String = if (opening_hours?.open_now == true) "Open Now" else "Closed"
     override fun toString(): String = "$name $rating $formatted_address"
 }
 

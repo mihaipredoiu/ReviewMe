@@ -1,10 +1,9 @@
-package com.example.reviewme.ui.notifications
+package com.example.reviewme.ui.saved
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.reviewme.classes.DetailedLocation
 import com.example.reviewme.classes.DetailedLocationWrapper
-import com.example.reviewme.classes.Location
 import com.example.reviewme.network.LocationApi
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -12,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Response
 import java.net.URLEncoder
 
-class NotificationsViewModel : ViewModel() {
+class SavedViewModel : ViewModel() {
     val locations: MutableLiveData<List<DetailedLocation>> = MutableLiveData<List<DetailedLocation>>().apply {
         value = listOf()
     }

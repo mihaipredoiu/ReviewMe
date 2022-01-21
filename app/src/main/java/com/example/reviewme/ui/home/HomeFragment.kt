@@ -7,6 +7,7 @@ import com.example.reviewme.LocationsSearchAdapter
 import com.example.reviewme.databinding.FragmentHomeBinding
 
 import android.view.*
+import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -42,6 +43,9 @@ class HomeFragment : Fragment() {
             override fun onQueryTextSubmit(text: String?): Boolean {
                 homeViewModel.getResults(text)
 
+                val suggestionView: TextView = binding.suggestionView
+                suggestionView.text = ""
+
                 return true
             }
 
@@ -55,6 +59,17 @@ class HomeFragment : Fragment() {
             findNavController().navigate(
                 HomeFragmentDirections.actionNavigationHomeToNavigationPlaces(placeId))
         }})
+
+        /** Choose a random keyword */
+        val keywordsList = listOf("restaurants", "supermarkets", "malls", "coffee shops")
+        val randomKeyword = keywordsList.random()
+
+        /** Display suggestion */
+        val suggestionView: TextView = binding.suggestionView
+        suggestionView.text = "Random suggestion: nearby $randomKeyword"
+
+        /** Request random category */
+        homeViewModel.getResults(randomKeyword)
 
         return root
     }
