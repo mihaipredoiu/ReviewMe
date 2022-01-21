@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.reviewme.FavoriteListAdapter
+import com.example.reviewme.LocationsSearchAdapter
 import com.example.reviewme.R
 import com.example.reviewme.databinding.FragmentNotificationsBinding
 
@@ -31,10 +34,32 @@ class NotificationsFragment : Fragment() {
         _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
+        val adapter = FavoriteListAdapter{
+                clickedItem -> notificationsViewModel.onItemClicked(clickedItem)
+        }
+        binding.locationsList.adapter = adapter
+
+        notificationsViewModel.locations.observe(viewLifecycleOwner, Observer {
+                locations -> adapter.data = locations
         })
+
+        /** Get the ids of the places added to Favorites list */
+        val filename = "savedPlaces"
+        var idsString = ""
+        context?.openFileInput(filename)?.bufferedReader()?.useLines { lines ->
+            lines.forEach { item -> idsString = "$idsString $item" }
+        }
+
+        val idsList = idsString.trim().split("\\s+".toRegex())
+
+        notificationsViewModel.getSaved(idsList)
+
+        notificationsViewModel.navigateToLocationDetails.observe(viewLifecycleOwner, Observer { placeId ->
+            placeId?.let {
+                findNavController().navigate(
+                    NotificationsFragmentDirections.actionNavigationNotificationsToNavigationPlaces(placeId))
+            }})
+
         return root
     }
 
