@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.reviewme.classes.DetailedLocationWrapper
+import com.example.reviewme.classes.Location
 import com.example.reviewme.classes.Review
 import com.example.reviewme.network.LocationApi
 import kotlinx.serialization.decodeFromString
@@ -47,5 +48,19 @@ class PlacesViewModel : ViewModel() {
 
                 override fun onFailure(call: Call<String>, t: Throwable) {}
             })
+    }
+
+    private val _navigateToSavedLocations = MutableLiveData<String?>()
+
+    val navigateToSavedLocations: MutableLiveData<String?>
+        get() = _navigateToSavedLocations
+
+    fun doneNavigating() {
+        _navigateToSavedLocations.value = null
+    }
+
+    fun onItemClicked() {
+        _navigateToSavedLocations.value = "test"
+        doneNavigating()
     }
 }

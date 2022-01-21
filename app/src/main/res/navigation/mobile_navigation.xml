@@ -25,6 +25,9 @@
             android:name="arg_id"
             app:argType="string"
             android:defaultValue=""/>
+        <action
+            android:id="@+id/action_navigation_places_to_navigation_saved"
+            app:destination="@id/navigation_saved" />
     </fragment>
 
     <fragment

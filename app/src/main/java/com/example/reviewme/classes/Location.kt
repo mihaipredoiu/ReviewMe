@@ -14,7 +14,7 @@ data class LocationWrapper(
 
 @Serializable
 data class Location(
-    val place_id : String? = "",
+    val place_id: String? = "",
     val name: String? = "",
     val formatted_address: String? = "",
     val opening_hours: OpeningHours? = OpeningHours(open_now = true),
@@ -149,7 +149,7 @@ fun main(args: Array<String>) {
     }
     """
     val obj = format.decodeFromString<LocationWrapper>(fullAnswerTest)
-   // println(obj) // MyModel(a=42, b="42")
+    // println(obj) // MyModel(a=42, b="42")
     println(obj.status)
     println(obj.results[0].status)
 

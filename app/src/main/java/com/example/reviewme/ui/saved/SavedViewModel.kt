@@ -12,36 +12,43 @@ import retrofit2.Response
 import java.net.URLEncoder
 
 class SavedViewModel : ViewModel() {
-    val locations: MutableLiveData<List<DetailedLocation>> = MutableLiveData<List<DetailedLocation>>().apply {
-        value = listOf()
-    }
+    val locations: MutableLiveData<List<DetailedLocation>> =
+        MutableLiveData<List<DetailedLocation>>().apply {
+            value = listOf()
+        }
 
     fun getSaved(ids: List<String>) {
         getSavedLocations(ids)
     }
 
     private fun getSavedLocations(ids: List<String>) {
-        val tempLocation: MutableLiveData<List<DetailedLocation>> = MutableLiveData<List<DetailedLocation>>().apply {
-            value = listOf()
-        }
+        val tempLocation: MutableLiveData<List<DetailedLocation>> =
+            MutableLiveData<List<DetailedLocation>>().apply {
+                value = listOf()
+            }
+
 
         ids.forEach { id ->
-            LocationApi.retrofitService.getLocationById(URLEncoder.encode(id, "utf-8")).enqueue(
-                object : retrofit2.Callback<String> {
-                    override fun onResponse(call: Call<String>, response: Response<String>) {
-                        val format = Json { ignoreUnknownKeys = true }
-                        val obj =
-                            format.decodeFromString<DetailedLocationWrapper>(response.body().toString())
+            if (id != "") {
+                LocationApi.retrofitService.getLocationById(URLEncoder.encode(id, "utf-8")).enqueue(
+                    object : retrofit2.Callback<String> {
+                        override fun onResponse(call: Call<String>, response: Response<String>) {
+                            val format = Json { ignoreUnknownKeys = true }
+                            val obj =
+                                format.decodeFromString<DetailedLocationWrapper>(
+                                    response.body().toString()
+                                )
 
-                        tempLocation.setValue(listOf(obj.result))
-                        locations.value = locations.value.orEmpty() + tempLocation.value.orEmpty()
-                    }
+                            tempLocation.value = listOf(obj.result)
+                            locations.value =
+                                locations.value.orEmpty() + tempLocation.value.orEmpty()
+                        }
 
-                    override fun onFailure(call: Call<String>, t: Throwable) {}
-                })
+                        override fun onFailure(call: Call<String>, t: Throwable) {}
+                    })
+            }
         }
     }
-
 
     private val _navigateToLocationDetails = MutableLiveData<String?>()
 
@@ -53,7 +60,7 @@ class SavedViewModel : ViewModel() {
     }
 
     fun onItemClicked(clickedItem: DetailedLocation) {
-        _navigateToLocationDetails.value = clickedItem.place_id!!
+        _navigateToLocationDetails.value = clickedItem.place_id
         doneNavigating()
     }
 }
