@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.reviewme.classes.DetailedLocationWrapper
-import com.example.reviewme.classes.Photo
 import com.example.reviewme.classes.Review
 import com.example.reviewme.network.LocationApi
 import kotlinx.serialization.decodeFromString
@@ -13,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class PlacesViewModel : ViewModel() {
-    lateinit var arg_id : String
+    lateinit var locationId : String
 
     var PLACE_ID = "ChIJTYUPei4AskARa8L4i012dis"
     var PLACE_URL = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJTYUPei4AskARa8L4i012dis&key=AIzaSyAZuwaDgYQkLe-uOBtJEbtMS_n3_Fd6SiM"
@@ -34,8 +33,8 @@ class PlacesViewModel : ViewModel() {
     }
     val photo: LiveData<String> = _photo
 
-    fun getLocationDetails(id: String? = PLACE_ID) {
-        LocationApi.retrofitService.getLocationById(PLACE_ID).enqueue(
+    fun getLocationDetails(id: String? = locationId) {
+        LocationApi.retrofitService.getLocationById(locationId).enqueue(
             object: retrofit2.Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     val format = Json { ignoreUnknownKeys = true }
