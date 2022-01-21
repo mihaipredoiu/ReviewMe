@@ -13,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Response
 
 class PlacesViewModel : ViewModel() {
+    lateinit var arg_id : String
 
     var PLACE_ID = "ChIJTYUPei4AskARa8L4i012dis"
     var PLACE_URL = "https://maps.googleapis.com/maps/api/place/details/json?place_id=ChIJTYUPei4AskARa8L4i012dis&key=AIzaSyAZuwaDgYQkLe-uOBtJEbtMS_n3_Fd6SiM"

@@ -104,4 +104,17 @@ class HomeViewModel : ViewModel() {
             })
     }
 
+    private val _navigateToLocationDetails = MutableLiveData<String?>()
+
+    val navigateToLocationDetails: MutableLiveData<String?>
+        get() = _navigateToLocationDetails
+
+    fun doneNavigating() {
+        _navigateToLocationDetails.value = null
+    }
+
+    fun onItemClicked(clickedItem: Location) {
+        _navigateToLocationDetails.value = clickedItem.place_id!!
+        doneNavigating()
+    }
 }
