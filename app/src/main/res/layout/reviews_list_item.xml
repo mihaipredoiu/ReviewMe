@@ -9,7 +9,7 @@
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground"
 
-    app:cardBackgroundColor="#B2B2B2"
+    app:cardBackgroundColor="#f8f8ff"
     app:cardCornerRadius="16dp"
     app:cardElevation="3dp"
     >
@@ -24,8 +24,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/item_title"
-            android:textColor="#99A28E"
+            android:id="@+id/user_name"
+            android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold"
             android:maxLines="2"
@@ -35,7 +35,7 @@
             tools:text="@tools:sample/full_names"/>
 
         <TextView
-            android:id="@+id/item_description"
+            android:id="@+id/motivation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="3"
@@ -44,7 +44,7 @@
             android:paddingLeft="20dp"
             android:layout_marginTop="8dp"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/item_title"
+            app:layout_constraintTop_toBottomOf="@id/user_name"
             tools:layout_editor_absoluteX="16dp"
             tools:text="@tools:sample/lorem/random"/>
 
@@ -53,11 +53,11 @@
             android:id="@+id/frameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/item_description">
+            app:layout_constraintTop_toBottomOf="@id/motivation">
 
 
             <ImageView
-                android:id="@+id/list_image"
+                android:id="@+id/star"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_action_name"
@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_rating"
+                android:id="@+id/rating"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="30dp"
                 android:textColor="#CED0D0"
@@ -74,17 +74,17 @@
                 android:textSize="17sp"
                 tools:text="@tools:sample/lorem"/>
 
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/item_status"
+                android:id="@+id/time_description"
                 android:text="140jsnjn"
                 android:textSize="17sp"
-                android:textColor="#55C366"
+                android:textColor="#fff"
                 android:textStyle="bold"
                 android:layout_gravity="bottom|right"
-                 />
+                />
+
         </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

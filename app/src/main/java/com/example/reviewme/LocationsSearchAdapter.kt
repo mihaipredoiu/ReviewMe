@@ -7,20 +7,15 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reviewme.classes.Location
-import org.w3c.dom.Text
 
 class LocationsSearchAdapter: RecyclerView.Adapter<LocationItemViewHolder>() {
-
-
-
-    var data: List<Location> = listOf<Location>()
+    var data: List<Location> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationItemViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.location_item_view, parent, false) as TextView
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
 
         return LocationItemViewHolder(view)
@@ -41,7 +36,7 @@ class LocationsSearchAdapter: RecyclerView.Adapter<LocationItemViewHolder>() {
     }
 }
 
-class LocationItemViewHolder(val locationView: View): RecyclerView.ViewHolder(locationView) {
+class LocationItemViewHolder(locationView: View): RecyclerView.ViewHolder(locationView) {
     var itemTitle : TextView = locationView.findViewById(R.id.item_title)
     var itemDescription: TextView = locationView.findViewById(R.id.item_description)
     var itemRating: TextView = locationView.findViewById(R.id.item_rating)

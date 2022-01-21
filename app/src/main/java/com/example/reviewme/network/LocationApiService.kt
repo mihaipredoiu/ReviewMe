@@ -22,6 +22,9 @@ interface LocationApiService {
 
     @GET("maps/api/place/details/json")
     fun getLocationById(@Query("place_id") id: String, @Query("key") key: String = API_KEY): Call<String>
+
+    @GET("maps/api/place/photo")
+    fun getLocationById(@Query("photo_reference") reference: String, @Query("maxwidth") id: Int = 400, @Query("key") key: String = API_KEY): Call<String>
 }
 
 object LocationApi {

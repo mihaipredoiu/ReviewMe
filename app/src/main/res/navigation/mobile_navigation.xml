@@ -15,7 +15,7 @@
         android:id="@+id/navigation_places"
         android:name="com.example.reviewme.ui.places.PlacesFragment"
         android:label="@string/title_places"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_places" />
 
     <fragment
         android:id="@+id/navigation_notifications"
