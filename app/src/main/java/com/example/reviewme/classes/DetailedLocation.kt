@@ -16,6 +16,7 @@ data class DetailedLocation(
     val international_phone_number: String? = "",
     val opening_hours: OpeningHours? = null,
     val rating: Float? = 0.0f,
+    val url: String,
     val types: MutableList<String>? = mutableListOf(),
     val photos: MutableList<Photo>? = mutableListOf(),
     val reviews: MutableList<Review>? = mutableListOf(),
