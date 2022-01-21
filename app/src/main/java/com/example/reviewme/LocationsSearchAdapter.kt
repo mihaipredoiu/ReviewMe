@@ -1,6 +1,5 @@
 package com.example.reviewme
 
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,25 +7,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.reviewme.classes.Location
-import org.w3c.dom.Text
-import android.content.Intent
-import android.widget.AdapterView
-import com.example.reviewme.ui.places.PlacesFragment
-import com.example.reviewme.ui.places.PlacesViewModel
-
 
 class LocationsSearchAdapter(
     private val onItemClicked: (Location) -> Unit
 ): RecyclerView.Adapter<LocationItemViewHolder>() {
 
-    var data: List<Location> = listOf<Location>()
+    var data: List<Location> = listOf()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LocationItemViewHolder {
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.location_item_view, parent, false) as TextView
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
 
         return LocationItemViewHolder(view)
@@ -46,7 +38,6 @@ class LocationsSearchAdapter(
         holder.locationView.setOnClickListener{
             onItemClicked(item)
         }
-
     }
 
     override fun getItemCount(): Int {

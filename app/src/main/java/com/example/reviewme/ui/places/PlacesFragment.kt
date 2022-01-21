@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.reviewme.ReviewsAdapter
 import com.example.reviewme.databinding.FragmentPlacesBinding
 import com.example.reviewme.databinding.ReviewsListItemBinding.*
-
 import com.bumptech.glide.Glide
 
 class PlacesFragment : Fragment() {
@@ -22,7 +21,6 @@ class PlacesFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,7 +33,6 @@ class PlacesFragment : Fragment() {
         _binding = FragmentPlacesBinding.inflate(inflater, container, false)
         placesViewModel.locationId = arguments?.let { PlacesFragmentArgs.fromBundle(it).argId }!!
 
-
         val root: View = binding.root
 
         val itemTitle: TextView = binding.itemTitle
@@ -44,7 +41,6 @@ class PlacesFragment : Fragment() {
 
         val adapter = ReviewsAdapter()
         binding.reviewsList.adapter = adapter
-
 
         placesViewModel.photo.observe(viewLifecycleOwner) { photo ->         Glide
             .with(this)
@@ -62,8 +58,6 @@ class PlacesFragment : Fragment() {
                 itemPhoneNumber.text = it.result.international_phone_number
             }
         })
-
-
 
         return root
     }

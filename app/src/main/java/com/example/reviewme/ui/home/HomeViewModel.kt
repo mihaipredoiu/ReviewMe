@@ -8,7 +8,6 @@ import com.example.reviewme.network.LocationApi
 import retrofit2.Call
 import retrofit2.Response
 import java.net.URLEncoder
-import javax.security.auth.callback.Callback
 import com.example.reviewme.classes.Location
 import com.example.reviewme.classes.LocationWrapper
 import kotlinx.serialization.decodeFromString
@@ -82,7 +81,6 @@ class HomeViewModel : ViewModel() {
 
     fun getResults(query: String?) {
         if (query !== null) {
-            System.out.println("I want to get results for $query")
             getHomeLocations(query)
         }
     }
@@ -91,16 +89,13 @@ class HomeViewModel : ViewModel() {
         LocationApi.retrofitService.getLocations(URLEncoder.encode(query, "utf-8")).enqueue(
             object: retrofit2.Callback<String> {
                  override fun onResponse(call: Call<String>, response: Response<String>) {
-                    //locations.value = listOf(response.body().toString().take(50), "C", "D", "S")
                     val format = Json { ignoreUnknownKeys = true }
                     val obj =  format.decodeFromString<LocationWrapper>(response.body().toString())
                     
                     locations.value = obj.results
                 }
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    //locations.value = listOf("E", "R", "R", "O", "R")
-                }
+                override fun onFailure(call: Call<String>, t: Throwable) {}
             })
     }
 

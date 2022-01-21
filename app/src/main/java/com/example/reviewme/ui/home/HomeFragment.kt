@@ -4,17 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.reviewme.LocationsSearchAdapter
-import com.example.reviewme.R
 import com.example.reviewme.databinding.FragmentHomeBinding
 
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.reviewme.MainActivity
-import com.example.reviewme.ui.places.PlacesFragment
 
 
 class HomeFragment : Fragment() {
@@ -31,8 +26,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val activity: MainActivity? = activity as MainActivity?
-
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
